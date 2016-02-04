@@ -1,4 +1,4 @@
-package com.lexing.learndagger.manager;
+package com.lexing.learndagger.domain;
 
 import rx.Observable;
 

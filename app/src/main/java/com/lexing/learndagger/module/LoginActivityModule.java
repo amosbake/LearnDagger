@@ -1,10 +1,8 @@
-package com.lexing.learndagger.ui.module;
+package com.lexing.learndagger.module;
 
 import com.lexing.learndagger.ui.ActivityScope;
 import com.lexing.learndagger.ui.activity.LoginActivity;
 import com.lexing.learndagger.ui.present.LoginActivityPresenter;
-
-import javax.inject.Scope;
 
 import dagger.Module;
 import dagger.Provides;

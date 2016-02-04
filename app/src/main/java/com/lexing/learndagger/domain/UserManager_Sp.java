@@ -1,4 +1,4 @@
-package com.lexing.learndagger.manager;
+package com.lexing.learndagger.domain;
 
 import android.app.Application;
 import android.content.Context;
@@ -25,7 +25,7 @@ public class UserManager_Sp implements UserDataManager {
 //    }
 //
 //    private UserManager_Sp() {
-//        mContext = CustomerAppication.getContext();
+//        mContext = App.getContext();
 //        mPreferences = mContext.getSharedPreferences("user", Context.MODE_PRIVATE);
 //    }
 

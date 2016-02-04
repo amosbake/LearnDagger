@@ -1,10 +1,9 @@
 package com.lexing.learndagger.ui.present;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.lexing.learndagger.ui.activity.LoginActivity;
-import com.lexing.learndagger.manager.UserDataManager;
+import com.lexing.learndagger.domain.UserDataManager;
 
 /**
  * Author: mopel(amosbake@outlook.com)

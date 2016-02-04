@@ -1,5 +1,8 @@
 package com.lexing.learndagger.ui;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import javax.inject.Scope;
 
 /**
@@ -8,5 +11,6 @@ import javax.inject.Scope;
  * TIME : 18:09
  */
 @Scope
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ActivityScope {
 }
