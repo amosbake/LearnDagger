@@ -37,11 +37,13 @@ public class DomainModule {
     }
 
     @Provides
+    @Singleton
     public GitHubApi provideGitApi() {
         return RestApiAdapter.getClient();
     }
 
     @Provides
+    @Singleton
     public GitManager provideGitManager(GitHubApi api) {
         return new GitManagerImp(api);
     }

@@ -15,20 +15,6 @@ import rx.Observable;
 public class UserManager_Sp implements UserDataManager {
     private Application mContext;
     private SharedPreferences mPreferences;
-//    private static UserManager_Sp instance;
-
-//    public static UserManager_Sp getInstance() {
-//        if (instance == null) {
-//            instance = new UserManager_Sp();
-//        }
-//        return instance;
-//    }
-//
-//    private UserManager_Sp() {
-//        mContext = App.getContext();
-//        mPreferences = mContext.getSharedPreferences("user", Context.MODE_PRIVATE);
-//    }
-
 
     public UserManager_Sp(Application application) {
         mContext = application;
