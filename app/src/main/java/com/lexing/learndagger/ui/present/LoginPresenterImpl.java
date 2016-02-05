@@ -3,7 +3,9 @@ package com.lexing.learndagger.ui.present;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.lexing.learndagger.domain.GitManager;
 import com.lexing.learndagger.domain.UserDataManager;
+import com.lexing.learndagger.models.GitUser;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -18,12 +20,14 @@ public class LoginPresenterImpl implements LoginPresenter {
     private static final String TAG = "LoginPresenterImpl";
     private LoginView mLoginView;
     private UserDataManager mUserDataManager;
+    private GitManager mGitManager;
     private CharSequence userName;
     private CharSequence passWord;
 
-    public LoginPresenterImpl(LoginView loginView, UserDataManager userDataManager) {
+    public LoginPresenterImpl(LoginView loginView, UserDataManager userDataManager, GitManager gitManager) {
         mLoginView = loginView;
         mUserDataManager = userDataManager;
+        mGitManager = gitManager;
     }
 
     @Override
@@ -56,8 +60,28 @@ public class LoginPresenterImpl implements LoginPresenter {
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
-                        mLoginView.hideProgress();
+                        loginGithub();
                         mLoginView.showToast(aBoolean ? "登录成功" : "登录失败");
+                    }
+                });
+    }
+
+    @Override
+    public void loginGithub() {
+        mGitManager.findUser("amosbake")
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<GitUser>() {
+                    @Override
+                    public void call(GitUser gitUser) {
+                        mLoginView.hideProgress();
+                        mLoginView.showInfo(gitUser.getNickName(), gitUser.getAvatarUrl());
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mLoginView.hideProgress();
+                        Log.e(TAG, "登录失败: ", throwable);
                     }
                 });
     }

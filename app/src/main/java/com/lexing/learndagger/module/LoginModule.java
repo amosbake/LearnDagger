@@ -1,5 +1,6 @@
 package com.lexing.learndagger.module;
 
+import com.lexing.learndagger.domain.GitManager;
 import com.lexing.learndagger.domain.UserDataManager;
 import com.lexing.learndagger.ui.ActivityScope;
 import com.lexing.learndagger.ui.present.LoginPresenter;
@@ -23,7 +24,7 @@ public class LoginModule {
     }
 
     @Provides
-    LoginPresenter provideLoginActivityPresenter(UserDataManager manager) {
-        return new LoginPresenterImpl(mLoginView, manager);
+    LoginPresenter provideLoginActivityPresenter(UserDataManager manager,GitManager gitManager) {
+        return new LoginPresenterImpl(mLoginView, manager,gitManager);
     }
 }

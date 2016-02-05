@@ -13,5 +13,5 @@ import rx.Observable;
  */
 public interface GitHubApi {
     @GET("/users/{user}")
-  Observable<GitUser> fetchUserInfo(@Path("user") String loginName);
+    Observable<GitUser> fetchUserInfo(@Path("user") String loginName);
 }

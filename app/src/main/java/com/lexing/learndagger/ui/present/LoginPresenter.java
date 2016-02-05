@@ -10,4 +10,5 @@ public interface LoginPresenter {
     void setPassWord(CharSequence passWord);
     void checkButtonStatu();
     void onLoginClick();
+    void loginGithub();
 }

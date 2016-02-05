@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.RxJavaCallAdapterFactory;
 
 /**
  * Author: mopel(amosbake@outlook.com)
@@ -23,7 +24,7 @@ public class RestApiAdapter {
 
     static {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         httpClient.setConnectTimeout(Constants.CONNECT_TIME_OUT, TimeUnit.SECONDS);
         httpClient.interceptors().add(loggingInterceptor);
     }
@@ -35,7 +36,8 @@ public class RestApiAdapter {
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson));
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     private static <S> S createService(Class<S> serviceClass) {
         Retrofit retrofit = builder.client(httpClient).build();

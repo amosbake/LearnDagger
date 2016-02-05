@@ -13,4 +13,6 @@ public interface LoginView {
     void hideProgress();
 
     void showToast(String msg);
+
+    void showInfo(String nickName,String url);
 }

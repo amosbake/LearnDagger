@@ -2,22 +2,25 @@ package com.lexing.learndagger.ui.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.lexing.learndagger.R;
 import com.lexing.learndagger.component.AppComponent;
 import com.lexing.learndagger.component.DaggerLoginComponent;
+import com.lexing.learndagger.domain.GitManager;
 import com.lexing.learndagger.domain.UserDataManager;
 import com.lexing.learndagger.module.LoginModule;
 import com.lexing.learndagger.ui.present.LoginPresenter;
 import com.lexing.learndagger.ui.present.LoginView;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -43,6 +46,15 @@ public class LoginActivity extends BaseActivity implements LoginView {
     LoginPresenter mPresenter;
     @Inject
     UserDataManager mUserDataManager;
+    @Inject
+    GitManager mGitManager;
+    @Bind(R.id.avator)
+    ImageView mAvator;
+    @Bind(R.id.gitNickName)
+    TextView mGitNickName;
+    @Bind(R.id.infoLayout)
+    LinearLayout mInfoLayout;
+
     private CompositeSubscription mSubscription;
 
 
@@ -117,6 +129,22 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void showToast(String msg) {
         if (!TextUtils.isEmpty(msg)) {
             Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void showInfo(String nickName, String url) {
+        if (!TextUtils.isEmpty(nickName)) {
+            mLayoutLogin.setVisibility(View.GONE);
+            mInfoLayout.setVisibility(View.VISIBLE);
+            mGitNickName.setText(nickName);
+            if (url!=null){
+                Picasso.with(this)
+                        .load(url)
+                        .fit()
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(mAvator);
+            }
         }
     }
 }

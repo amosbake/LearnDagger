@@ -14,8 +14,11 @@
     tools:context=".ui.activity.LoginActivity">
 
     <ImageView
+        android:id="@+id/avator"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
         android:src="@mipmap/ic_launcher"/>
 
     <LinearLayout
@@ -29,7 +32,7 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+
             android:hint="Input Name"
             android:padding="15dp"
             android:singleLine="true"
@@ -54,6 +57,29 @@
             android:paddingRight="60dp"
             android:text="Login"
             android:textColor="@color/btn_text"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/infoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="@android:color/holo_red_light"
+            android:gravity="center"
+            android:text="Welcome"/>
+        <TextView
+            android:id="@+id/gitNickName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:gravity="center"/>
     </LinearLayout>
     <ProgressBar
         android:id="@+id/loadProgress"
