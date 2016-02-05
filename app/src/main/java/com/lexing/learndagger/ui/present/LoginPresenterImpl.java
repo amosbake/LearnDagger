@@ -1,8 +1,13 @@
 package com.lexing.learndagger.ui.present;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.lexing.learndagger.domain.UserDataManager;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Author: mopel(amosbake@outlook.com)
@@ -34,7 +39,26 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
+    public void checkButtonStatu() {
+        if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
+            mLoginView.enableLoginButton(true);
+        } else {
+            mLoginView.enableLoginButton(false);
+        }
+    }
+
+    @Override
     public void onLoginClick() {
-        Log.i(TAG, "onLoginClick: ");
+        mLoginView.showProgress();
+        mUserDataManager.login(userName.toString(), passWord.toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        mLoginView.hideProgress();
+                        mLoginView.showToast(aBoolean ? "登录成功" : "登录失败");
+                    }
+                });
     }
 }

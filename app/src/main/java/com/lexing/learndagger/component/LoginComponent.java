@@ -3,6 +3,7 @@ package com.lexing.learndagger.component;
 import com.lexing.learndagger.module.DomainModule;
 import com.lexing.learndagger.module.LoginModule;
 import com.lexing.learndagger.ui.ActivityScope;
+import com.lexing.learndagger.ui.activity.LoginActivity;
 import com.lexing.learndagger.ui.present.LoginPresenter;
 import com.lexing.learndagger.ui.present.LoginView;
 
@@ -20,6 +21,6 @@ import dagger.Provides;
         modules = LoginModule.class
 )
 public interface LoginComponent {
-    void inject(LoginView loginView);
+    void inject(LoginActivity activity);
     LoginPresenter getLoginPresenter();
 }

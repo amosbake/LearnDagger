@@ -7,8 +7,7 @@ package com.lexing.learndagger.ui.present;
  */
 public interface LoginPresenter {
     void setUserName(CharSequence userName);
-
     void setPassWord(CharSequence passWord);
-
+    void checkButtonStatu();
     void onLoginClick();
 }

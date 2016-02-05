@@ -23,7 +23,6 @@ public class LoginModule {
     }
 
     @Provides
-    @ActivityScope
     LoginPresenter provideLoginActivityPresenter(UserDataManager manager) {
         return new LoginPresenterImpl(mLoginView, manager);
     }

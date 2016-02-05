@@ -47,10 +47,12 @@ public class App extends Application {
                         public void call(Boolean aBoolean) {
                             if (aBoolean){
                                 Log.i(TAG, "first enter register default");
-                                loginSp.edit().putBoolean("First",false);
+                                loginSp.edit().putBoolean("First",false).commit();
                             }
                         }
                     });
+        }else {
+            Log.i(TAG, "User default : 123456");
         }
     }
 
